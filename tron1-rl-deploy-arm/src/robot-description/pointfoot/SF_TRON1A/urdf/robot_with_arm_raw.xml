@@ -1,0 +1,183 @@
+<mujoco model="point_foot">
+  <default>
+    <default class="robot">
+      <default class="visual">
+        <geom material="visualgeom" contype="0" conaffinity="0" group="2" />
+      </default>
+      <default class="collision">
+        <geom material="collision_material" condim="3" contype="0" conaffinity="1" priority="1" group="3" solref="0.005 1" friction="1 0.01 0.01" />
+        <equality solimp="0.99 0.999 1e-05" solref="0.005 1" />
+      </default>
+    </default>
+    <default class="floor">
+      <geom type="plane" size="0 0 0.05" material="groundplane" />
+    </default>
+  </default>
+
+  <compiler angle="radian" meshdir="." />
+
+  <size nconmax="5000" njmax="5000" />
+
+  <option integrator="implicitfast" />
+
+  <worldbody>
+    <body name="base_Link" pos="0.00000000 0.00000000 0.77982000" quat="1 0 0 0" childclass="robot">
+      <geom name="base_Link_collision" pos="0.03 0 -0.072" quat="1.0 0.0 0.0 0.0" type="box" size="0.135 0.13 0.095" class="collision" />
+      <geom name="base_Link_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="base_Link.STL" material="default_material" class="visual" />
+      <body name="limx_imu" pos="0. 0. 0." quat="1.0 0.0 0.0 0.0">
+        <inertial pos="0 0 0" quat="1.0 0.0 0.0 0.0" mass="0.01" diaginertia="1e-06 1e-06 1e-06" />
+        <geom name="limx_imu_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="box" size="0.0075 0.0075 0.002" material="default_material" class="visual" />
+      </body>
+      <body name="abad_L_Link" pos="55.56E-03 105E-03 -260.2E-03" quat="1.0 0.0 0.0 0.0">
+        <inertial pos="-69.77E-03 44.79E-03 0.57E-03" quat="1.0 0.0 0.0 0.0" mass="1.469" diaginertia="0.001555384 0.00235925 0.00208092" />
+        <joint name="abad_L_Joint" type="hinge" range="-0.38397 1.39626" axis="1 0 0" />
+        <geom name="abad_L_Link_collision" pos="0.03 0 0" quat="0.5003981633553667 0.49999984146591736 0.49960183664463337 0.49999984146591736" type="cylinder" size="0.05 0.025" class="collision" />
+        <geom name="abad_L_Link_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="abad_L_Link.STL" material="default_material" class="visual" />
+        <body name="hip_L_Link" pos="-0.077 0.02050 0" quat="1.0 0.0 0.0 0.0">
+          <inertial pos="-28.69E-03 -47.7E-03 -39.92E-03" quat="1.0 0.0 0.0 0.0" mass="2.30" diaginertia="0.01693728 0.02285328 0.00933419" />
+          <joint name="hip_L_Joint" type="hinge" range="-1.012291 1.396263" axis="0 1 0" />
+          <geom name="hip_L_Link_collision" pos="-0.10 -0.03 -0.14" quat="0.9650925008813303 0.0 0.2619092681495244 0.0" type="cylinder" size="0.035 0.075" class="collision" />
+          <geom name="hip_L_Link_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="hip_L_Link.STL" material="default_material" class="visual" />
+          <body name="knee_L_Link" pos="-0.1500 -0.02050 -0.25981" quat="1.0 0.0 0.0 0.0">
+            <inertial pos="114.52E-03 1.3E-03 -193.67E-03" quat="1.0 0.0 0.0 0.0" mass="1.22" diaginertia="0.01093843 0.01435812 0.00408765" />
+            <joint name="knee_L_Joint" type="hinge" range="-0.872665 1.361357" axis="0 -1 0" />
+            <geom name="knee_L_Link_collision" pos="0.078 0 -0.12" quat="0.962425197628238 0.0 -0.27154693695611287 0.0" type="cylinder" size="0.02 0.13" class="collision" />
+            <geom name="knee_L_Link_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="knee_L_Link.STL" material="default_material" class="visual" />
+            <body name="ankle_L_Link" pos="0.150 0 -0.25981" quat="1.0 0.0 0.0 0.0">
+              <inertial pos="10.74E-03 -0.61E-03 -33.14E-03" quat="1.0 0.0 0.0 0.0" mass="0.62" diaginertia="0.00052546 0.00181205 0.00197381" />
+              <joint name="ankle_L_Joint" type="hinge" range="-1.15191730631626 1.5707963267949" axis="0 -1 0" />
+              <geom name="ankle_L_Link_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="ankle_L_Link.STL" class="collision" />
+              <geom name="ankle_L_Link_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="ankle_L_Link.STL" material="default_material" class="visual" />
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="abad_R_Link" pos="55.56E-03 -105E-03 -260.2E-03" quat="1.0 0.0 0.0 0.0">
+        <inertial pos="-69.77E-03 -44.79E-03 0.57E-03" quat="1.0 0.0 0.0 0.0" mass="1.469" diaginertia="0.001555384 0.00235925 0.00208092" />
+        <joint name="abad_R_Joint" type="hinge" range="-1.39626 0.38397" axis="1 0 0" />
+        <geom name="abad_R_Link_collision" pos="0.03 0 0" quat="0.5003981633553667 0.49999984146591736 0.49960183664463337 0.49999984146591736" type="cylinder" size="0.05 0.025" class="collision" />
+        <geom name="abad_R_Link_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="abad_R_Link.STL" material="default_material" class="visual" />
+        <body name="hip_R_Link" pos="-0.077 -0.02050 0" quat="1.0 0.0 0.0 0.0">
+          <inertial pos="-28.69E-03 47.7E-03 -39.92E-03" quat="1.0 0.0 0.0 0.0" mass="2.30" diaginertia="0.01693728 0.02285328 0.00933419" />
+          <joint name="hip_R_Joint" type="hinge" range="-1.396263 1.012291" axis="0 -1 0" />
+          <geom name="hip_R_Link_collision" pos="-0.10 0.03 -0.14" quat="0.9650925008813303 0.0 0.2619092681495244 0.0" type="cylinder" size="0.035 0.075" class="collision" />
+          <geom name="hip_R_Link_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="hip_R_Link.STL" material="default_material" class="visual" />
+          <body name="knee_R_Link" pos="-0.1500 0.02050 -0.25981" quat="1.0 0.0 0.0 0.0">
+            <inertial pos="114.52E-03 -1.3E-03 -193.67E-03" quat="1.0 0.0 0.0 0.0" mass="1.22" diaginertia="0.01093843 0.01435812 0.00408765" />
+            <joint name="knee_R_Joint" type="hinge" range="-1.361357 0.872665" axis="0 1 0" />
+            <geom name="knee_R_Link_collision" pos="0.078 0 -0.12" quat="0.962425197628238 0.0 -0.27154693695611287 0.0" type="cylinder" size="0.02 0.13" class="collision" />
+            <geom name="knee_R_Link_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="knee_R_Link.STL" material="default_material" class="visual" />
+            <body name="ankle_R_Link" pos="0.150 0 -0.25981" quat="1.0 0.0 0.0 0.0">
+              <inertial pos="10.74E-03 0.61E-03 -33.14E-03" quat="1.0 0.0 0.0 0.0" mass="0.62" diaginertia="0.00052546 0.00181205 0.00197381" />
+              <joint name="ankle_R_Joint" type="hinge" range="-1.15191730631626 1.5707963267949" axis="0 -1 0" />
+              <geom name="ankle_R_Link_collision" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="ankle_R_Link.STL" class="collision" />
+              <geom name="ankle_R_Link_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="ankle_R_Link.STL" material="default_material" class="visual" />
+            </body>
+          </body>
+        </body>
+      </body>
+      <body name="airbot_arm_base" pos="0.00166 0 0.0195" quat="1.0 0.0 0.0 0.0">
+        <inertial pos="0 0 0" quat="1.0 0.0 0.0 0.0" mass="0.17" diaginertia="0.00044301 0.00035087 0.00079287" />
+        <geom name="airbot_arm_base_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="box" size="0.075 0.075 0.003" material="default_material" class="visual" />
+        <body name="airbot_arm" pos="0.0245 0. 0.003" quat="1.0 0.0 0.0 0.0">
+          <inertial pos="-0.010729 -0.00017015 0.041712" quat="1.0 0.0 0.0 0.0" mass="0.77705" diaginertia="0.0008453 0.0011821 0.0012442" />
+          <geom name="airbot_arm_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="airbot_arm.STL" material="default_material" class="visual" />
+          <body name="link1" pos="0 0 0.1172" quat="1.0 0.0 0.0 0.0">
+            <inertial pos="6.9854E-05 -0.0018033 -0.0040245" quat="1.0 0.0 0.0 0.0" mass="0.5571" diaginertia="0.0003647 0.0002944 0.0003449" />
+            <joint name="J1" type="hinge" range="-3.14 2.09" axis="0 0 1" />
+            <geom name="link1_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="link1.STL" material="default_material" class="visual" />
+            <body name="link2" pos="0 0 0" quat="0.13586603235699254 0.13586653142171254 -0.6939298124803523 0.6939323614315623">
+              <inertial pos="0.22493 0.0047721 0.008023" quat="1.0 0.0 0.0 0.0" mass="0.64621" diaginertia="0.0004901 0.0051052 0.0050391" />
+              <joint name="J2" type="hinge" range="-2.96 0.17" axis="0 0 1" />
+              <geom name="link2_collision" pos="0.1 0.02 0.0" quat="0.9950041652780258 0.0 0.0 0.09983341664682815" type="box" size="0.1 0.02 0.02" class="collision" />
+              <geom name="link2_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="link2.STL" material="default_material" class="visual" />
+              <body name="link3" pos="0.27009 0 0" quat="0.55806023303518 0.0 0.0 0.8298004436638489">
+                <inertial pos="-0.00037204 0.16316 0.0024748" quat="1.0 0.0 0.0 0.0" mass="0.28804" diaginertia="0.0026161 0.0002222 0.0025516" />
+                <joint name="J3" type="hinge" range="-0.087 3.14" axis="0 0 1" />
+                <geom name="link3_collision" pos="0.0 0.15 0" quat="1.0 0.0 0.0 0.0" type="box" size="0.02 0.175 0.02" class="collision" />
+                <geom name="link3_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="link3.STL" material="default_material" class="visual" />
+                <body name="link4" pos="0 0.30854 0" quat="0.4999981633974483 -0.49999999999662686 -0.49999999999662686 -0.5000018366025516">
+                  <inertial pos="5.2436E-06 0.00040412 -0.03228" quat="1.0 0.0 0.0 0.0" mass="0.34876" diaginertia="0.0049818 0.0050587 0.0003503" />
+                  <joint name="J4" type="hinge" range="-2.96 2.96" axis="0 0 1" />
+                  <geom name="link4_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="link4.STL" material="default_material" class="visual" />
+                  <body name="link5" pos="0 0 0" quat="0.7071054825112363 0.7071080798594735 0.0 0.0">
+                    <inertial pos="8.333E-06 0.026148 0.002525" quat="1.0 0.0 0.0 0.0" mass="0.36132" diaginertia="0.0004677 0.0001825 0.0004286" />
+                    <joint name="J5" type="hinge" range="-1.74 1.74" axis="0 0 1" />
+                    <geom name="link5_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="link5.STL" material="default_material" class="visual" />
+                    <body name="link6" pos="0 0.26145 0" quat="0.7071054825112363 -0.7071080798594735 0.0 0.0">
+                      <inertial pos="1.9522E-06 -0.002582 -0.13382" quat="1.0 0.0 0.0 0.0" mass="0.65361" diaginertia="0.0029561 0.0025189 0.0021828" />
+                      <joint name="J6" type="hinge" range="-3.14 3.14" axis="0 0 1" />
+                      <geom name="link6_collision" pos="0 0.0 -0.07" quat="1.0 0.0 0.0 0.0" type="box" size="0.04 0.02 0.05" class="collision" />
+                      <geom name="link6_visual" pos="0 0 0" quat="1.0 0.0 0.0 0.0" type="mesh" mesh="link6.STL" material="default_material" class="visual" />
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+      <freejoint name="floating_base" />
+      <site name="base_Link_site" pos="0 0 0" quat="1 0 0 0" />
+    </body>
+    <light pos="0 0 2." dir="0 0 -1" directional="true" />
+    <geom name="floor" class="floor" size="0 0 0.05" />
+  </worldbody>
+
+  <asset>
+    <material name="default_material" rgba="0.7 0.7 0.7 1" />
+    <material name="collision_material" rgba="1.0 0.28 0.1 0.9" />
+    <mesh name="base_Link.STL" file="../meshes/base_Link.STL" />
+    <mesh name="abad_L_Link.STL" file="../meshes/abad_L_Link.STL" />
+    <mesh name="hip_L_Link.STL" file="../meshes/hip_L_Link.STL" />
+    <mesh name="knee_L_Link.STL" file="../meshes/knee_L_Link.STL" />
+    <mesh name="ankle_L_Link.STL" file="../meshes/ankle_L_Link.STL" />
+    <mesh name="abad_R_Link.STL" file="../meshes/abad_R_Link.STL" />
+    <mesh name="hip_R_Link.STL" file="../meshes/hip_R_Link.STL" />
+    <mesh name="knee_R_Link.STL" file="../meshes/knee_R_Link.STL" />
+    <mesh name="ankle_R_Link.STL" file="../meshes/ankle_R_Link.STL" />
+    <mesh name="airbot_arm.STL" file="../meshes/airbot_arm.STL" />
+    <mesh name="link1.STL" file="../meshes/link1.STL" />
+    <mesh name="link2.STL" file="../meshes/link2.STL" />
+    <mesh name="link3.STL" file="../meshes/link3.STL" />
+    <mesh name="link4.STL" file="../meshes/link4.STL" />
+    <mesh name="link5.STL" file="../meshes/link5.STL" />
+    <mesh name="link6.STL" file="../meshes/link6.STL" />
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300" />
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2" />
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072" />
+  </asset>
+
+  <actuator>
+    <motor name="abad_L_Joint" joint="abad_L_Joint" />
+    <motor name="hip_L_Joint" joint="hip_L_Joint" />
+    <motor name="knee_L_Joint" joint="knee_L_Joint" />
+    <motor name="ankle_L_Joint" joint="ankle_L_Joint" />
+    <motor name="abad_R_Joint" joint="abad_R_Joint" />
+    <motor name="hip_R_Joint" joint="hip_R_Joint" />
+    <motor name="knee_R_Joint" joint="knee_R_Joint" />
+    <motor name="ankle_R_Joint" joint="ankle_R_Joint" />
+    <motor name="J1" joint="J1" />
+    <motor name="J2" joint="J2" />
+    <motor name="J3" joint="J3" />
+    <motor name="J4" joint="J4" />
+    <motor name="J5" joint="J5" />
+    <motor name="J6" joint="J6" />
+  </actuator>
+
+  <contact>
+    <exclude body1="base_Link" body2="abad_L_Link" />
+    <exclude body1="abad_L_Link" body2="hip_L_Link" />
+    <exclude body1="hip_L_Link" body2="knee_L_Link" />
+    <exclude body1="knee_L_Link" body2="ankle_L_Link" />
+    <exclude body1="base_Link" body2="abad_R_Link" />
+    <exclude body1="abad_R_Link" body2="hip_R_Link" />
+    <exclude body1="hip_R_Link" body2="knee_R_Link" />
+    <exclude body1="knee_R_Link" body2="ankle_R_Link" />
+    <exclude body1="link2" body2="link3" />
+  </contact>
+
+  <visual>
+    <rgba haze="0.15 0.25 0.35 1" />
+  </visual>
+</mujoco>
